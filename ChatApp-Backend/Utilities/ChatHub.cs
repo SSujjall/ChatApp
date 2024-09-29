@@ -26,16 +26,16 @@ namespace ChatApp_Backend.Utilities
 
         public async Task SendMessage(string message)
         {
-            if (_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
+            if (_connections.TryGetValue(Context.ConnectionId, out UserConnection? userConnection))
             {
                 await Clients.Groups(userConnection.ChatRoom)
                     .SendAsync("ReceiveMessage", userConnection.Username, message);
             }
         }
 
-        public override Task OnDisconnectedAsync(Exception e)
+        public override Task OnDisconnectedAsync(Exception? e)
         {
-            if (_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
+            if (_connections.TryGetValue(Context.ConnectionId, out UserConnection? userConnection))
             {
                 _connections.Remove(Context.ConnectionId);
                 Clients.Group(userConnection.ChatRoom).
