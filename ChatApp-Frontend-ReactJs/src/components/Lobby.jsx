@@ -27,7 +27,12 @@ const Lobby = ({ joinRoom }) => {
           className="text-center mt-2 mb-2"
         />
       </Form.Group>
-      <Button className="w-100" variant="success" type="submit" disabled={!user || !room}>
+      <Button
+        className="w-100"
+        variant="success"
+        type="submit"
+        disabled={!user || !room}
+      >
         Join
       </Button>
     </Form>

@@ -1,3 +1,29 @@
-export const MessageContainer = ({messages}) => {
-    
-}
+import { useEffect, useRef } from "react";
+
+/* eslint-disable react/prop-types */
+export const MessageContainer = ({ messages }) => {
+  const messageRef = useRef();
+
+  useEffect(() => {
+    if (messageRef && messageRef.current) {
+      const { scrollHeight, clientHeight } = messageRef.current;
+
+      messageRef.current.scrollTo({
+        left: 0,
+        top: scrollHeight - clientHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
+
+  return (
+    <div ref={messageRef} className="message-container">
+      {messages.map((m, index) => (
+        <div key={index} className="user-message">
+          <div className="message">{m.message}</div>
+          <div className="from-user">{m.user}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
