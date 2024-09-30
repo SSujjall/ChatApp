@@ -14,7 +14,8 @@ function App() {
   const joinRoom = async (Username, ChatRoom) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl("https://localhost:7245/chat", {withCredentials: false})
+        // .withUrl("https://localhost:7245/chat", {withCredentials: false})
+        .withUrl("https://chatily.azurewebsites.net/chat", {withCredentials: false})
         .configureLogging(LogLevel.Information)
         .build();
 

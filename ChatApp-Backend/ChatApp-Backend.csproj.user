@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>H:\.Projects\ChatApp%28.NET-React%29\ChatApp-Backend\Properties\PublishProfiles\Chatily - Zip Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>H:\.Projects\ChatApp%28.NET-React%29\ChatApp-Backend\Properties\PublishProfiles\Chatily - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
