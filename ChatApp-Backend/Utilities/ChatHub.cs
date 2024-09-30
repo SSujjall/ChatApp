@@ -6,9 +6,10 @@ namespace ChatApp_Backend.Utilities
     public class ChatHub : Hub
     {
         private readonly IDictionary<string, UserConnection> _connections;
-
+        private readonly string _botName;
         public ChatHub(IDictionary<string, UserConnection> connections)
         {
+            _botName = "admin";
             _connections = connections;
         }
 
@@ -19,7 +20,7 @@ namespace ChatApp_Backend.Utilities
             _connections[Context.ConnectionId] = conn;
 
             await Clients.Group(conn.ChatRoom)
-                .SendAsync("ReceiveMessage", "admin", $"{conn.Username} has joined {conn.ChatRoom}");
+                .SendAsync("ReceiveMessage", _botName, $"{conn.Username} has joined {conn.ChatRoom}");
 
             await SendConnectedUsers(conn.ChatRoom);
         }
@@ -39,7 +40,7 @@ namespace ChatApp_Backend.Utilities
             {
                 _connections.Remove(Context.ConnectionId);
                 Clients.Group(userConnection.ChatRoom).
-                    SendAsync("ReceiveMessage", "admin", $"{userConnection.Username} has left the chat.");
+                    SendAsync("ReceiveMessage", _botName, $"{userConnection.Username} has left the chat.");
 
                 SendConnectedUsers(userConnection.ChatRoom);
             }
