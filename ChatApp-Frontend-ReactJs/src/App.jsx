@@ -9,6 +9,7 @@ function App() {
   const [connection, setConnecton] = useState();
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
 
   const joinRoom = async (Username, ChatRoom) => {
     try {
@@ -34,6 +35,7 @@ function App() {
       await connection.start();
       await connection.invoke("JoinRoom", { Username, ChatRoom });
       setConnecton(connection);
+      setCurrentUser(Username);
     } catch (e) {
       console.log(e);
     }
@@ -56,10 +58,10 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center text-center">
-      <div className="w-5/12 min-w-[200px] max-w-[400px]">
-        <h2 className="text-6xl font-bold">Chat Room</h2>
-        <hr className="mt-3 mb-3" />
+    <div className="flex h-screen items-center justify-center">
+      <div className="w-11/12 min-w-[500px] max-w-[900px]">
+        <img src="/Logo.png" className="h-20 mx-auto" />
+        <hr className="mt-3 mb-3 w-6/12 mx-auto min-w-[200px] max-w-[400px]" />
         {!connection ? (
           <Lobby joinRoom={joinRoom} />
         ) : (
@@ -68,6 +70,7 @@ function App() {
             sendMessage={sendMessage}
             closeConnection={closeConnection}
             users={users}
+            currentUser={currentUser}
           />
         )}
       </div>

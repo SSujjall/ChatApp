@@ -8,7 +8,7 @@ const Lobby = ({ joinRoom }) => {
 
   return (
     <Form
-      className="lobby"
+      className="lobby w-6/12 min-w-[200px] max-w-[400px] mx-auto"
       onSubmit={(e) => {
         e.preventDefault();
         joinRoom(user, room);
