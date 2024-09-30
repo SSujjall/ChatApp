@@ -16,10 +16,15 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:5173")
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials();
+        //builder.WithOrigins("http://localhost:5173")
+        //.AllowAnyHeader()
+        //.AllowAnyMethod()
+        //.AllowCredentials();
+
+        // Allow all origins, headers, and methods
+        builder.AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod();
     });
 });
 
@@ -38,6 +43,7 @@ app.UseAuthorization();
 
 app.UseRouting();
 app.UseCors();
+
 app.MapControllers();
 app.MapHub<ChatHub>("/chat");
 
